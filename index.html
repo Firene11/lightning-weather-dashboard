@@ -15,18 +15,73 @@
     </nav>
   </header>
 
+  <section id="content">
   <section class="left-sidebar">
     <div id="side-header">Search for a city:</div>
-    <input type="text" placeholder="Fredericton"><br>
+    <input id="search-button" type="text" placeholder="Fredericton"><br>
     <button class="search">Search</button><br>
     <hr>
-    <div id="search-output"></div>
+    <button id="search-output">Miami</button>
+  
+    </div>
   </section>
 
-  <section class="results">
-    <div class="current-result">Where the current search result displays for the current day, includes time.</div>
-    <div class="5-day-forecast">five day forecast goes here</div>
+  <section id="results">
+    <div class="current-day">
+      <h1 class="current-header">City <icon>*</icon></h1>
+      <p>Temp</p>
+      <p>Wind</p>
+      <p>Humidity</p>
+    </div>
+    <div class="5-day-forecast">
+      <h1>5-Day Forecast</h1>
+      <div class="day-cards">
+
+      <card id="card-1">
+        <div class="card-content">
+        <h3>Date</h3>
+        <icon>*</icon>
+        <p class="card-text">Temp<br>Wind<br>Humidity</p>
+      </div>
+      </card>
+
+      <card id="card-2">
+        <div class="card-content">
+        <h3>Date</h3>
+        <icon>*</icon>
+        <p class="card-text">Temp<br>Wind<br>Humidity</p>
+      </div>
+      </card>
+
+      <card id="card-3">
+        <div class="card-content">
+        <h3>Date</h3>
+        <icon>*</icon>
+        <p class="card-text">Temp<br>Wind<br>Humidity</p>
+      </div>
+      </card>
+
+      <card id="card-4">
+        <div class="card-content">
+        <h3>Date</h3>
+        <icon>*</icon>
+        <p class="card-text">Temp<br>Wind<br>Humidity</p>
+      </div>
+      </card>
+
+      <card id="card-5">
+        <div class="card-content">
+        <h3>Date</h3>
+        <icon>*</icon>
+        <p class="card-text">Temp<br>Wind<br>Humidity</p>
+      </div>
+      </card>
+
+
+      </div>
+    </div>
   </section>
+</section>
   
 
   <script src="script.js"></script>
