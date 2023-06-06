@@ -48,13 +48,13 @@ nav {
     padding-bottom: 10px;
 }
 
-#search-button {
+#search-text {
     padding: 8px;
     border: 1px solid gray;
     border-radius: 4px;
 }
 
-.search {
+#search-button {
     background-color: rgb(38, 73, 230);
     border-radius: 4px;
     color: white;

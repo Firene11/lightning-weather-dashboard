@@ -1,17 +1,34 @@
 var APIKey = "6509d1e4a713732bea01a624be400633";
 
-var city;
+var city = "";
+var lat = "";
+var lon = "";
+var state = "";
+var country = "";
 
 //https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=Miami&appid=6509d1e4a713732bea01a624be400633";
 
 // five day forecast -- api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-var fiveDayForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + lat + lon + "&appid=" + APIKey;
+var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + lat + lon + "&appid=" + APIKey;
 
 // GEOCODING API -- http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-var geoCode = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + state + country + "&limit="+ 10 + "&appid=" + APIKey;
+var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + state + country + "&limit="+ 8 + "&appid=" + APIKey;
+
+var searchText = document.getElementById("#search-text");
+var searchBtn = document.getElementById("#search-button");
+var cityNameOutput = document.getElementById("search-output");
+var currentDay = document.getElementById(".current-day");
+var fiveDayForecast = document.getElementById("#card");
 
 fetch(queryURL)
+.then(function(response){
+    return response.json();
+})
+.then(function(data){
+    console.log(data)
+})
+
 
 //GIVEN a weather dashboard with form inputs WHEN I search for a city
 //THEN I am presented with current and future conditions for that city and that city is added to the search history
