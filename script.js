@@ -21,13 +21,18 @@ var cityNameOutput = document.getElementById("search-output");
 var currentDay = document.getElementById(".current-day");
 var fiveDayForecast = document.getElementById("#card");
 
-fetch(queryURL)
-.then(function(response){
-    return response.json();
+fetch(queryURL).then(function(response) {
+    if (response.status !== 200) {
+        console.log(response.status);
+    } else {
+        return response.json();
+    }
 })
 .then(function(data){
     console.log(data)
 })
+
+
 
 
 //GIVEN a weather dashboard with form inputs WHEN I search for a city
