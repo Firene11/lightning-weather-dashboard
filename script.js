@@ -17,7 +17,7 @@ var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=Miami,Florida,U
 
 var searchText = document.getElementById("#search-text");
 var searchBtn = document.getElementById("#search-button");
-var cityNameOutput = document.getElementById("search-output");
+var cityNameOutput = document.getElementById("#search-output");
 var currentDay = document.getElementById(".current-day");
 var fiveDayForecast = document.getElementById("#card");
 
@@ -28,10 +28,29 @@ fetch(queryURL).then(function(response) {
         return response.json();
     }
 })
-.then(function(data){
-    console.log(data)
-})
 
+// to append to html document, need to figure out if i need to fetch each time. Maybe link all of these then statements
+//into one function? I think?
+
+fetch(queryURL)
+.then(function(response) {
+    //convert to JSON object
+    return response.json();
+})
+.then(function(data){
+    console.log(data);
+    //display in html here
+    var nameArray = data.main;
+    for(var i = 0; i = nameArray.length; i++) {
+        var listItem = document.createElement("li");
+        listItem.textContent = nameArray[i].name;
+        HTMLDataListElement.appendChild(listItem);
+    }
+})
+.catch(function(error) {
+    //incase there's an error
+    console.log(error);
+});
 
 
 
