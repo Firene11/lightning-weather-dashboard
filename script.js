@@ -10,10 +10,10 @@ var country = "";
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=Miami&appid=6509d1e4a713732bea01a624be400633";
 
 // five day forecast -- api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + lat + lon + "&appid=" + APIKey;
+var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=25.7743&-80.1937=&appid=6509d1e4a713732bea01a624be400633";
 
 // GEOCODING API -- http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + state + country + "&limit="+ 8 + "&appid=" + APIKey;
+var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=Miami,Florida,USA&limit=8&appid=6509d1e4a713732bea01a624be400633";
 
 var searchText = document.getElementById("#search-text");
 var searchBtn = document.getElementById("#search-button");
