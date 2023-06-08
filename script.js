@@ -6,6 +6,9 @@ var lon = "";
 var state = "";
 var country = "";
 
+var today = dayjs().format ("MM-DD-YYYY");
+$(".current-day").html(today);
+
 //https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=Miami&appid=6509d1e4a713732bea01a624be400633";
 
