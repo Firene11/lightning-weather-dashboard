@@ -20,7 +20,7 @@
   <section class="left-sidebar">
     <div id="side-header">Search for a city:</div>
     <form id="city-name">
-      <input type="text" placeholder="Miami"><br>
+      <input type="text" placeholder=""><br>
       <button type="submit" id="search-button">Search</button>
   </form>
   <br>
@@ -37,7 +37,7 @@
   <section id="results">
     <div class="current-day">
       <!--Today's Forecast-->
-      <h1 class="city-name">City</h1>
+      <h1 class="city-name"></h1><h1 class="date"></h1>
       <p>Temp</p>
       <p>Wind</p>
       <p>Humidity</p>
@@ -105,8 +105,11 @@
 <footer> A Coding Bootcamp project by Farrah Hodgson 2023.</footer>
   
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-<script>dayjs().format()</script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
 <script src="script.js"></script>
 
 
