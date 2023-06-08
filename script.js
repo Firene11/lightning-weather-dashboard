@@ -15,19 +15,47 @@ var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=25.7
 // GEOCODING API -- http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=Miami,Florida,USA&limit=8&appid=6509d1e4a713732bea01a624be400633";
 
-var searchText = document.getElementById("#search-text");
 var searchBtn = document.getElementById("#search-button");
 var cityNameOutput = document.getElementById("#search-output");
 var currentDay = document.getElementById(".current-day");
 var fiveDayForecast = document.getElementById("#card");
+var form = document.querySelector("#city-name");
 
-fetch(queryURL).then(function(response) {
-    if (response.status !== 200) {
-        console.log(response.status);
-    } else {
-        return response.json();
-    }
-})
+
+function formSubmit(event) {
+    console.log("Form Submitted");
+    event.preventDefault();
+
+    fetch(queryURL).then(function(response) {
+        if (response.status !== 200) {
+            console.log(response.status);
+        } else {
+            return response.json();
+        }
+    })
+
+    .then(function(data){
+        console.log(data);
+        //display in html here
+        var cityName = data.main;
+        for(var i = 0; i = cityName.length; i++) {
+            var listItem = document.createElement("li");
+            cityNameOutput.textContent = cityName[i].name;
+            HTMLDataListElement.appendChild(cityNameOutput);
+        }
+    })
+    .catch(function(error) {
+        //incase there's an error
+        console.log(error);
+    });
+
+  }
+  
+  form.addEventListener("submit", formSubmit);
+
+
+    
+
 
 // to append to html document, need to figure out if i need to fetch each time. Maybe link all of these then statements
 //into one function? I think?
@@ -37,20 +65,7 @@ fetch(queryURL)
     //convert to JSON object
     return response.json();
 })
-.then(function(data){
-    console.log(data);
-    //display in html here
-    var nameArray = data.main;
-    for(var i = 0; i = nameArray.length; i++) {
-        var listItem = document.createElement("li");
-        listItem.textContent = nameArray[i].name;
-        HTMLDataListElement.appendChild(listItem);
-    }
-})
-.catch(function(error) {
-    //incase there's an error
-    console.log(error);
-});
+
 
 
 
