@@ -26,6 +26,13 @@ function formSubmit(event) {
     console.log("Form Submitted");
     event.preventDefault();
 
+
+    
+  }
+  
+  form.addEventListener("submit", formSubmit);
+
+
     fetch(queryURL).then(function(response) {
         if (response.status !== 200) {
             console.log(response.status);
@@ -33,28 +40,6 @@ function formSubmit(event) {
             return response.json();
         }
     })
-
-    .then(function(data){
-        console.log(data);
-        //display in html here
-        var cityName = data.main;
-        for(var i = 0; i = cityName.length; i++) {
-            var listItem = document.createElement("li");
-            cityNameOutput.textContent = cityName[i].name;
-            HTMLDataListElement.appendChild(cityNameOutput);
-        }
-    })
-    .catch(function(error) {
-        //incase there's an error
-        console.log(error);
-    });
-
-  }
-  
-  form.addEventListener("submit", formSubmit);
-
-
-    
 
 
 // to append to html document, need to figure out if i need to fetch each time. Maybe link all of these then statements
@@ -65,7 +50,20 @@ fetch(queryURL)
     //convert to JSON object
     return response.json();
 })
-
+.then(function(data){
+    console.log(data);
+    //display in html here
+    var cityName = data.main;
+    for(var i = 0; i = cityName.length; i++) {
+        var listItem = document.createElement("li");
+        listItem.textContent = cityName[i].name;
+        HTMLDataListElement.appendChild(listItem);
+    }
+})
+.catch(function(error) {
+    //incase there's an error
+    console.log(error);
+});
 
 
 
