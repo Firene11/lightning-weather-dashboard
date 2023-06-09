@@ -11,7 +11,7 @@ var today = dayjs().format ("MM-DD-YYYY");
 $(".current-day").html(today);
 
 //https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=Miami&appid=6509d1e4a713732bea01a624be400633";
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=6509d1e4a713732bea01a624be400633";
 
 // five day forecast -- api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=25.7743&-80.1937=&appid=6509d1e4a713732bea01a624be400633";
@@ -27,27 +27,7 @@ var searchBtn = $('#search-button');
 var leftSidebar = $('#left-sidebar');
 var content = $('#content');
 
-
-  $(document).ready(function () {
-
-    $(".searchBtn").on("click", function (event) {
-        event.preventDefault();
-        city = $(this).siblings(".description").val().trim();
-        if (city ==="") {
-            console.log("submitted");
-            return;
-        };
-        cities.push(city);
-
-        localStorage.setItem('city', JSON.stringify(cities));
-        console.log(cities);
-        })
-
-  })
-
-  
-
-
+//if else statement if bad URL
 
     fetch(queryURL).then(function(response) {
         if (response.status !== 200) {
@@ -57,29 +37,18 @@ var content = $('#content');
         }
     })
 
-
-// to append to html document, need to figure out if i need to fetch each time. Maybe link all of these then statements
-//into one function? I think?
-
-fetch(queryURL)
-.then(function(response) {
-    //convert to JSON object
-    return response.json();
-})
 .then(function(data){
     console.log(data);
-    //display in html here
-    var cityName = data.main;
-    for(var i = 0; i = cityName.length; i++) {
-        var listItem = document.createElement("li");
-        listItem.textContent = cityName[i].name;
-        HTMLDataListElement.appendChild(listItem);
     }
-})
-.catch(function(error) {
-    //incase there's an error
-    console.log(error);
-});
+)
+
+displayWeather(data) {
+    var { name }= data;
+    var { icon, description } = data.weather;
+    var { temp, humidity } = data.main;
+    var { speed } = data.wind;
+}
+
 
 
 
