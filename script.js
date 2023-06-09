@@ -32,10 +32,15 @@ var content = $('#content');
 
     $(".searchBtn").on("click", function (event) {
         event.preventDefault();
-        var cityOutput = $(this).siblings(".description").val();
+        city = $(this).siblings(".description").val().trim();
+        if (city ==="") {
+            console.log("submitted");
+            return;
+        };
+        cities.push(city);
 
-        localStorage.setItem(leftSidebar, cityOutput);
-        console.log(leftSidebar + cityOutput);
+        localStorage.setItem('city', JSON.stringify(cities));
+        console.log(cities);
         })
 
   })
