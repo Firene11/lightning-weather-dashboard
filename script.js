@@ -34,16 +34,15 @@ var content = $('#content');
             console.log(response.status);
         } else {
             return response.json();
-        }
+        }    
+        })
+
+.then(function(data) {
+    console.log(data);
     })
 
-.then(function(data){
-    console.log(data);
-    }
-)
-
-displayWeather(data) {
-    var { name }= data;
+function displayWeather(data) {
+    var { name } = data;
     var { icon, description } = data.weather;
     var { temp, humidity } = data.main;
     var { speed } = data.wind;
