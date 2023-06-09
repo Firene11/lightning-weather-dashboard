@@ -39,13 +39,18 @@ var content = $('#content');
 
 .then(function(data) {
     console.log(data);
+    this.getWeather(data);
     })
 
-function displayWeather(data) {
+
+//pull the details needed from the API's object
+function getWeather(data) {
     var { name } = data;
-    var { icon, description } = data.weather;
+    //the [0] pulls from the first element of the array
+    var { icon, description } = data.weather[0];
     var { temp, humidity } = data.main;
     var { speed } = data.wind;
+    console.log(name, icon, description, temp, humidity, speed);
 }
 
 
