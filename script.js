@@ -1,6 +1,7 @@
 var APIKey = "6509d1e4a713732bea01a624be400633";
 
-var city = "";
+var city = "Miami";
+var cities = [];
 var lat = "";
 var lon = "";
 var state = "";
@@ -18,22 +19,29 @@ var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=25.7
 // GEOCODING API -- http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=Miami,Florida,USA&limit=8&appid=6509d1e4a713732bea01a624be400633";
 
-var searchBtn = document.getElementById("#search-button");
-var cityNameOutput = document.getElementById("#search-output");
-var currentDay = document.getElementById(".current-day");
-var fiveDayForecast = document.getElementById("#card");
-var form = document.querySelector("#city-name");
+var cityOutput = $("#search-output");
+var currentDay = $(".current-day");
+var fiveDayForecast = $("#card");
+var form = $("#city-name");
+var searchBtn = $('#search-button');
+var leftSidebar = $('#left-sidebar');
+var content = $('#content');
 
 
-function formSubmit(event) {
-    console.log("Form Submitted");
-    event.preventDefault();
+  $(document).ready(function () {
 
+    $(".searchBtn").on("click", function (event) {
+        event.preventDefault();
+        var cityOutput = $(this).siblings(".description").val();
 
-    
-  }
+        localStorage.setItem(leftSidebar, cityOutput);
+        console.log(leftSidebar + cityOutput);
+        })
+
+  })
+
   
-  form.addEventListener("submit", formSubmit);
+
 
 
     fetch(queryURL).then(function(response) {
