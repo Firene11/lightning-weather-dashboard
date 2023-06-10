@@ -2,9 +2,30 @@ var APIKey = "6509d1e4a713732bea01a624be400633";
 
 var city = "Fredericton";
 var cities = [];
+var lat = 45.9454;
+var lon = -66.6656;
 
 //https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=6509d1e4a713732bea01a624be400633";
+
+// five day forecast -- api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=6509d1e4a713732bea01a624be400633";
+
+// GEOCODING API -- http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=Miami,Florida,USA&limit=8&appid=6509d1e4a713732bea01a624be400633";
+
+// searches the city to see if it exists in entries
+function find(city){
+    for (var i=0; i<cities.length; i++){
+        if(city.toUpperCase()===cities[i]){
+            return -1;
+        }
+    }
+    return 1;
+}
+
+var input = document.querySelector("#input-box");
+var searchButton = document.querySelector("#search-button");
 
 var cityName = document.querySelector(".city-name");
 var iconToday = document.querySelector(".icon-today");
@@ -45,24 +66,9 @@ function todaysWeather(data) {
     humidityToday.innerText = "Humidity:" + humidity + "%";
 }
 
-//set up dates
-function setDates () {
-var { today, next1, next2, next3, next4, next5 } = dayjs().format ("MM-DD-YYYY");
-$(".current-day").html(today);
-$(".day1").html(next1);
-$(".day2").html(next2);
-$(".day3").html(next3);
-$(".day4").html(next4);
-$(".day5").html(next5);
-}
 
 
 
-// five day forecast -- api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=25.7743&-80.1937=&appid=6509d1e4a713732bea01a624be400633";
-
-// GEOCODING API -- http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=Miami,Florida,USA&limit=8&appid=6509d1e4a713732bea01a624be400633";
 
 
 //GIVEN a weather dashboard with form inputs WHEN I search for a city
