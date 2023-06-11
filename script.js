@@ -14,18 +14,9 @@ var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" 
 // GEOCODING API -- http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=Miami,Florida,USA&limit=8&appid=6509d1e4a713732bea01a624be400633";
 
-// searches the city to see if it exists in entries
-function find(city){
-    for (var i=0; i<cities.length; i++){
-        if(city.toUpperCase()===cities[i]){
-            return -1;
-        }
-    }
-    return 1;
-}
-
 var input = document.querySelector("#input-box");
 var searchButton = document.querySelector("#search-button");
+var history = document.querySelector("#search-output");
 
 var cityName = document.querySelector(".city-name");
 var iconToday = document.querySelector(".icon-today");
@@ -38,13 +29,14 @@ currentDay = new Date();
 
 searchButton.addEventListener("click", getWeather);
 
-// Display the curent and future weather to the user after grabing the city form the input text box.
-function displayWeather(event){
-    event.preventDefault();
-    if(input.val().trim()!==""){
-        city=input.val().trim();
-        todaysWeather(city);
+// searches the city to see if it exists in entries
+function find(city){
+    for (var i=0; i<cities.length; i++){
+        if(city.toUpperCase()===cities[i]){
+            return -1;
+        }
     }
+    return 1;
 }
 
 //if else statement if bad URL
@@ -58,24 +50,35 @@ fetch(queryURL).then(function(response) {
     .then(function(data) {
     console.log(data);
     this.getWeather(data);
+    history.innerText = data;
+    localStorage.setItem("getWeather", JSON.stringify(getWeather));
     })
+    .catch(error => {
+        console.log("error", error);
+    });
 
 //pull the details needed from the API's object
 function getWeather(data) {
     var { name } = data;
     //the [0] pulls from the first element of the array
-    var { date } = data.timezone;
     var { icon } = data.weather[0];
     var { temp, humidity } = data.main;
     var { speed } = data.wind;
     console.log(name, icon, temp, humidity, speed);
     cityName.innerText = name;
-    currentDay.textContent = date;
     iconToday.src = "https://openweathermap.org/img/wn/" + icon + ".png";
     tempToday.innerText = "Temp:" + temp + "°F";
     windToday.innerText = "Wind:" + speed + "MPH";
     humidityToday.innerText = "Humidity:" + humidity + "%";
 }
+
+
+
+
+
+
+
+
 
 
 
