@@ -18,8 +18,10 @@ var searchOutput = document.getElementById("#search-output");
 
 var input = document.querySelector("#input-box");
 var searchButton = document.querySelector("#search-button");
+var todaysWeather = document.querySelector(".current-day");
 
 function getWeather(data) {
+
 
 //Fetch request for data from API
 fetch(queryURL)
@@ -34,13 +36,21 @@ fetch(queryURL)
 })
 .then(function(data) {
     console.log(data);
-    //Display in HTML here
-    var dataArray = data.response;
-    for(var i = 0; i < dataArray.length; i++) {
-        var cityList = document.createElement("li");
-        cityList.textcontent = dataArray[i].name;
-        searchOutput.appendChild(cityList);
-    }
+    //pull data from objext array
+    var { name } = data;
+    //the [0] pulls from the first element of the array
+    var date = dayjs().format ("dddd-MM-DD-YYYY");
+    var { icon } = data.weather[0];
+    var { temp, humidity } = data.main;
+    var { speed } = data.wind;
+    console.log(name, icon, temp, humidity, speed);
+    //Display in HTML here//
+    document.querySelector(".city-name").innerText = name;
+    document.querySelector(".icon-today").src = "https://openweathermap.org/img/wn/" + icon + ".png";
+    document.querySelector(".temp-today").innerText = "Temp:" + temp + "°F";
+    document.querySelector(".wind-today").innerText = "Wind:" + speed + "MPH";
+    document.querySelector(".humidity-today").innerText = "Humidity:" + humidity + "%";
+    document.querySelector(".date-today").innerText = date;
 })
 .catch(function(error) {
     console.log(error);
@@ -57,6 +67,8 @@ function search() {
         return;
 }};
 }
+
+getWeather();
 
 
 
