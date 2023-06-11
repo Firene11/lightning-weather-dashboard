@@ -55,7 +55,107 @@ fetch(queryURL)
 .catch(function(error) {
     console.log(error);
 })
+/////////////////////////////////////////////////////////////////////////////
+//FIVE DAY FORECAST
 
+//Fetch request for data from API
+fetch(fiveDayForecastURL)
+.then(function(response) {
+//Convert to JSON object
+    return response.json();
+    if (response.status !== 200) {
+        document.location.replace("./404.html")
+    } else {
+        return response.json();
+    }
+})
+.then(function(data) {
+    console.log(data);
+    //pull data from object array
+    var d = dayjs().format ("MM-DD-YYYY");
+    var nextDay1 = dayjs(d).add(1, "day");
+    var { icon } = data.list[0].weather[0];
+    var { temp, humidity } = data.list[0].main;
+    var { speed } = data.list[0].wind;
+    console.log(icon, temp, humidity, speed);
+    //Display in HTML here//
+
+    document.querySelector(".icon1").src = "https://openweathermap.org/img/wn/" + icon + ".png";
+    document.querySelector(".temp1").innerText = "Temp:" + temp + "°F";
+    document.querySelector(".wind1").innerText = "Wind:" + speed + "MPH";
+    document.querySelector(".humidity1").innerText = "Humidity:" + humidity + "%";
+    document.querySelector("#day-1").innerText = nextDay1;
+
+    //DAY 2
+    var d = dayjs().format ("MM-DD-YYYY");
+    var nextDay2 = dayjs(d).add(2, "day");
+    var { icon } = data.list[1].weather[0];
+    var { temp, humidity } = data.list[1].main;
+    var { speed } = data.list[1].wind;
+    console.log(icon, temp, humidity, speed);
+    //Display in HTML here//
+    
+    document.querySelector(".icon2").src = "https://openweathermap.org/img/wn/" + icon + ".png";
+    document.querySelector(".temp2").innerText = "Temp:" + temp + "°F";
+    document.querySelector(".wind2").innerText = "Wind:" + speed + "MPH";
+    document.querySelector(".humidity2").innerText = "Humidity:" + humidity + "%";
+    document.querySelector("#day-2").innerText = nextDay2;
+
+     //DAY 3
+     var d = dayjs().format ("MM-DD-YYYY");
+     var nextDay3 = dayjs(d).add(3, "day");
+     var { icon } = data.list[2].weather[0];
+     var { temp, humidity } = data.list[2].main;
+     var { speed } = data.list[2].wind;
+     console.log(icon, temp, humidity, speed);
+     //Display in HTML here//
+     
+     document.querySelector(".icon3").src = "https://openweathermap.org/img/wn/" + icon + ".png";
+     document.querySelector(".temp3").innerText = "Temp:" + temp + "°F";
+     document.querySelector(".wind3").innerText = "Wind:" + speed + "MPH";
+     document.querySelector(".humidity3").innerText = "Humidity:" + humidity + "%";
+     document.querySelector("#day-3").innerText = nextDay3;
+
+     //DAY 4
+     var d = dayjs().format ("MM-DD-YYYY");
+     var nextDay4 = dayjs(d).add(4, "day");
+     var { icon } = data.list[3].weather[0];
+     var { temp, humidity } = data.list[3].main;
+     var { speed } = data.list[3].wind;
+     console.log(icon, temp, humidity, speed);
+     //Display in HTML here//
+     
+     document.querySelector(".icon4").src = "https://openweathermap.org/img/wn/" + icon + ".png";
+     document.querySelector(".temp4").innerText = "Temp:" + temp + "°F";
+     document.querySelector(".wind4").innerText = "Wind:" + speed + "MPH";
+     document.querySelector(".humidity4").innerText = "Humidity:" + humidity + "%";
+     document.querySelector("#day-4").innerText = nextDay4;
+
+     //DAY 5
+     var d = dayjs().format ("MM-DD-YYYY");
+     var nextDay5 = dayjs(d).add(5, "day");
+     var { icon } = data.list[4].weather[0];
+     var { temp, humidity } = data.list[4].main;
+     var { speed } = data.list[4].wind;
+     console.log(icon, temp, humidity, speed);
+     //Display in HTML here//
+     
+     document.querySelector(".icon5").src = "https://openweathermap.org/img/wn/" + icon + ".png";
+     document.querySelector(".temp5").innerText = "Temp:" + temp + "°F";
+     document.querySelector(".wind5").innerText = "Wind:" + speed + "MPH";
+     document.querySelector(".humidity5").innerText = "Humidity:" + humidity + "%";
+     document.querySelector("#day-5").innerText = nextDay5;
+
+})
+.catch(function(error) {
+    console.log(error);
+})
+
+    
+
+
+
+///////////////////////////////////////////////////////////////////////////////
 //add event listener on click of search button
 searchButton.addEventListener("click", search);
 
