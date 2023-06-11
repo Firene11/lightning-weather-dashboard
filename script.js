@@ -14,12 +14,17 @@ var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" 
 // GEOCODING API -- http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=Miami,Florida,USA&limit=8&appid=6509d1e4a713732bea01a624be400633";
 
+var searchOutput = document.getElementById("#search-output");
+
 var input = document.querySelector("#input-box");
 var searchButton = document.querySelector("#search-button");
-var history = document.querySelector("#search-output");
 
+function getWeather(data) {
+
+//Fetch request for data from API
 fetch(queryURL)
 .then(function(response) {
+//Convert to JSON object
     return response.json();
     if (response.status !== 200) {
         document.location.replace("./404.html")
@@ -29,20 +34,31 @@ fetch(queryURL)
 })
 .then(function(data) {
     console.log(data);
+    //Display in HTML here
+    var dataArray = data.response;
+    for(var i = 0; i < dataArray.length; i++) {
+        var cityList = document.createElement("li");
+        cityList.textcontent = dataArray[i].name;
+        searchOutput.appendChild(cityList);
+    }
 })
-
-
+.catch(function(error) {
+    console.log(error);
+})
 
 //add event listener on click of search button
 searchButton.addEventListener("click", search);
 
 //Function for text input if it's a city or not
 function search() {
-    var city = input.Value.trim();
-    if (city === "") {
+    var cities = input.Value;
+    if (cities === "") {
         console.log("error");
         return;
 }};
+}
+
+
 
 
 
