@@ -19,29 +19,25 @@
   <section id="content">
 
   <section class="left-sidebar">
+
+    <!--THIS IS THE SEARCH FOR A CITY SECTION-->
     <div id="side-header">Search for a city:</div>
-    <form id="city-search">
-      <input type="text" id="input-box" placeholder="Fredericton..."><br>
-      <button type="submit" id="search-button">Search</button>
-  </form>
+      <input type="text" id="input-box" placeholder="City Name..."><br>
+      <button id="search-button">Search</button>
   <br>
     <hr>
-    <ul>
-      <li><button id="search-output">
+    <!--THIS IS WHERE THE SEARCH HISTORY IS DISPLAYED-->
+    <div id="search-list">
+      <ul id="search-output">
       <!--Generated in JavaScript-->
-    </button></li><br>
-  </ul>
-  
+      </ul><br>
+  </div>
     </div>
   </section>
 
   <section id="results">
     <div class="current-day">
-      <!--Today's Forecast-->
-      <h1 class="city-name"></h1><h1 class="date-today"></h1><img src="" alt="" class="icon-today"/>
-      <p class="temp-today">..</p>
-      <p class="wind-today"></p>
-      <p class="humidity-today"></p>
+      <!--Today's Forecast generated in JavaScript-->
     </div>
 
     <div class="5-day-forecast">
@@ -49,55 +45,12 @@
       <h1>5-Day Forecast</h1>
       <div class="day-cards">
 
-      <card id="card-1">
-        <div class="day-1">
-        <h3 id="day-1"></h3>
-        <img src="" alt="" class="icon"/>
-        <p class="temp"></p>
-        <p class="wind"></p>
-        <p class="humidity"></p>
+      <card id="card">
+        <div class="day">
+        <!--5 day forecast to be displayed in JavaScript-->
       </div>
       </card>
 
-      <card id="card-2">
-        <div class="day-2">
-          <h3 id="day-2"></h3>
-          <img src="" alt="" class="icon"/>
-          <p class="temp"></p>
-          <p class="wind"></p>
-          <p class="humidity"></p>
-      </div>
-      </card>
-
-      <card id="card-3">
-        <div class="day-3">
-          <h3 id="day-3"></h3>
-          <img src="" alt="" class="icon"/>
-          <p class="temp"></p>
-          <p class="wind"></p>
-          <p class="humidity"></p>
-      </div>
-      </card>
-
-      <card id="card-4">
-        <div class="day-4">
-          <h3 id="day-4"></h3>
-          <img src="" alt="" class="icon"/>
-          <p class="temp"></p>
-          <p class="wind"></p>
-          <p class="humidity"></p>
-      </div>
-      </card>
-
-      <card id="card-5">
-        <div class="day-5">
-          <h3 id="day-5"></h3>
-          <img src="" alt="" class="icon"/>
-          <p class="temp"></p>
-          <p class="wind"></p>
-          <p class="humidity"></p>
-      </div>
-      </card>
       </div>
     </div>
   </section>
