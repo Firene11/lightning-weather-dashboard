@@ -18,67 +18,33 @@ var input = document.querySelector("#input-box");
 var searchButton = document.querySelector("#search-button");
 var history = document.querySelector("#search-output");
 
-var cityName = document.querySelector(".city-name");
-var iconToday = document.querySelector(".icon-today");
-var tempToday = document.querySelector(".temp-today");
-var windToday = document.querySelector(".wind-today");
-var humidityToday = document.querySelector(".humidity-today");
-
-var currentDay = document.querySelector(".current-day");
-currentDay = new Date();
-
-searchButton.addEventListener("click", getWeather);
-
-function search() {
-    var city = input.ariaValueMax.trim();
-    if (city === "");
-    return;
-}
-
-//if else statement if bad URL
-fetch(queryURL).then(function(response) {
+fetch(queryURL)
+.then(function(response) {
+    return response.json();
     if (response.status !== 200) {
-        console.log(response.status);
+        document.location.replace("./404.html")
     } else {
         return response.json();
-    }    
-    })
-
-    //pull the details needed from the API's object
-    var apiData = {
-        city: data.name,
-        //the [0] pulls from the first element of the array
-        icon: data.weather[0].icon,
-        temp: data.main.temp,
-        humidity: data.main.humidity,
-        wind: data.wind.speed,
-    };
-
-    getWeather(weatherData);
-    saveSearchResults(weatherData);
-    getForecast(location);
-
-    //
-    function getWeather(data) {
-
-    console.log(name, icon, temp, humidity, speed);
-    cityName.innerText = name;
-    iconToday.src = "https://openweathermap.org/img/wn/" + icon + ".png";
-    tempToday.innerText = "Temp:" + temp + "°F";
-    windToday.innerText = "Wind:" + speed + "MPH";
-    humidityToday.innerText = "Humidity:" + humidity + "%";
-}
-
-
-    .then(function(data) {
+    }
+})
+.then(function(data) {
     console.log(data);
-    this.getWeather(data);
-    history.innerText = data;
-    localStorage.setItem("getWeather", JSON.stringify(getWeather));
-    })
-    .catch(error => {
-        console.log("error", error);
-    });
+})
+
+
+
+//add event listener on click of search button
+searchButton.addEventListener("click", search);
+
+//Function for text input if it's a city or not
+function search() {
+    var city = input.Value.trim();
+    if (city === "") {
+        console.log("error");
+        return;
+}};
+
+
 
 
 
