@@ -43,23 +43,24 @@ fetch(queryURL).then(function(response) {
         return response.json();
     }    
     })
-    .then(function(data) {
-    console.log(data);
-    this.getWeather(data);
-    history.innerText = data;
-    localStorage.setItem("getWeather", JSON.stringify(getWeather));
-    })
-    .catch(error => {
-        console.log("error", error);
-    });
 
-//pull the details needed from the API's object
-function getWeather(data) {
-    var { name } = data;
-    //the [0] pulls from the first element of the array
-    var { icon } = data.weather[0];
-    var { temp, humidity } = data.main;
-    var { speed } = data.wind;
+    //pull the details needed from the API's object
+    var apiData = {
+        city: data.name,
+        //the [0] pulls from the first element of the array
+        icon: data.weather[0].icon,
+        temp: data.main.temp,
+        humidity: data.main.humidity,
+        wind: data.wind.speed,
+    };
+
+    getWeather(weatherData);
+    saveSearchResults(weatherData);
+    getForecast(location);
+
+    //
+    function getWeather(data) {
+
     console.log(name, icon, temp, humidity, speed);
     cityName.innerText = name;
     iconToday.src = "https://openweathermap.org/img/wn/" + icon + ".png";
@@ -69,12 +70,15 @@ function getWeather(data) {
 }
 
 
-
-
-
-
-
-
+    .then(function(data) {
+    console.log(data);
+    this.getWeather(data);
+    history.innerText = data;
+    localStorage.setItem("getWeather", JSON.stringify(getWeather));
+    })
+    .catch(error => {
+        console.log("error", error);
+    });
 
 
 
