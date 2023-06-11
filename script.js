@@ -36,6 +36,17 @@ var humidityToday = document.querySelector(".humidity-today");
 var currentDay = document.querySelector(".current-day");
 currentDay = new Date();
 
+searchButton.addEventListener("click", getWeather);
+
+// Display the curent and future weather to the user after grabing the city form the input text box.
+function displayWeather(event){
+    event.preventDefault();
+    if(input.val().trim()!==""){
+        city=input.val().trim();
+        todaysWeather(city);
+    }
+}
+
 //if else statement if bad URL
 fetch(queryURL).then(function(response) {
     if (response.status !== 200) {
@@ -46,11 +57,11 @@ fetch(queryURL).then(function(response) {
     })
     .then(function(data) {
     console.log(data);
-    this.todaysWeather(data);
+    this.getWeather(data);
     })
 
 //pull the details needed from the API's object
-function todaysWeather(data) {
+function getWeather(data) {
     var { name } = data;
     //the [0] pulls from the first element of the array
     var { date } = data.timezone;
