@@ -29,14 +29,10 @@ currentDay = new Date();
 
 searchButton.addEventListener("click", getWeather);
 
-// searches the city to see if it exists in entries
-function find(city){
-    for (var i=0; i<cities.length; i++){
-        if(city.toUpperCase()===cities[i]){
-            return -1;
-        }
-    }
-    return 1;
+function search() {
+    var city = input.ariaValueMax.trim();
+    if (city === "");
+    return;
 }
 
 //if else statement if bad URL
