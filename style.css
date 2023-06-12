@@ -73,7 +73,7 @@ hr {
 }
 
 
-#search-output {
+.searched-city {
     background-color: rgb(192, 191, 191);
     width: 100%;
     border: none;
