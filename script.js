@@ -11,17 +11,29 @@ var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&ap
 // five day forecast -- api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=6509d1e4a713732bea01a624be400633";
 
-// GEOCODING API -- http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-var geoCodeURL = "http://api.openweathermap.org/geo/1.0/direct?q=Miami,Florida,USA&limit=8&appid=6509d1e4a713732bea01a624be400633";
 
 var searchOutput = document.getElementById("#search-output");
 
+var formEl = document.querySelector("form");
 var input = document.querySelector("#input-box");
 var searchButton = document.querySelector("#search-button");
+var list = document.querySelector(".cities");
 var todaysWeather = document.querySelector(".current-day");
+var results = document.querySelector(".result")
 
-function getWeather(data) {
+formEl.addEventListener("submit", (e) => {
+    e.preventDefault();
+    var location = e.target.location.value;
+    getWeather(location);
+})
 
+function weatherApp(location) {
+    getWeather(location);
+}
+
+
+
+function getWeather(location) {
 
 //Fetch request for data from API
 fetch(queryURL)
@@ -44,6 +56,7 @@ fetch(queryURL)
     var { temp, humidity } = data.main;
     var { speed } = data.wind;
     console.log(name, icon, temp, humidity, speed);
+
     //Display in HTML here//
     document.querySelector(".city-name").innerText = name;
     document.querySelector(".icon-today").src = "https://openweathermap.org/img/wn/" + icon + ".png";
@@ -51,6 +64,7 @@ fetch(queryURL)
     document.querySelector(".wind-today").innerText = "Wind:" + speed + "MPH";
     document.querySelector(".humidity-today").innerText = "Humidity:" + humidity + "%";
     document.querySelector(".date-today").innerText = date;
+
 })
 .catch(function(error) {
     console.log(error);
@@ -146,27 +160,32 @@ fetch(fiveDayForecastURL)
      document.querySelector(".humidity5").innerText = "Humidity:" + humidity + "%";
      document.querySelector("#day-5").innerText = nextDay5;
 
+
 })
 .catch(function(error) {
     console.log(error);
 })
+return getWeather;
 
-    
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-//add event listener on click of search button
-searchButton.addEventListener("click", search);
-
-//Function for text input if it's a city or not
-function search() {
-    var cities = input.Value;
-    if (cities === "") {
-        console.log("error");
-        return;
-}};
 }
+
+//Search History display
+function Searchhistory() {
+    var cityStorage = JSON.parse(localStorage.getItem("cities")) || [];
+    var pastSearch = document.getElementById("search-output");
+
+    pastSearch.innerHTML ="";
+
+    for (i = 0; i < cityStorage.length; i++) {
+        
+        var cityData = document.createElement("button");
+        cityData.classList.add("searched-city");
+        cityData.textContent = pastSearch[i].city;
+    }
+
+}
+
+
 
 getWeather();
 
