@@ -22,21 +22,21 @@
 
     <!--THIS IS THE SEARCH FOR A CITY SECTION-->
     <div id="side-header">Search for a city:</div>
-      <input type="text" placeholder="City..." id="city-input"><br>
-      <button id="search-button">Search</button>
+      <input type="text" id="input-box" placeholder="City..."><br>
+      <button type="submit" id="search-button">Search</button>
   <br>
     <hr>
-    <div id ="search-history">
     <ul>
-      <li class ="cities"><button class="past-cities"></button></li>
-    <br>
+      <li><button id="search-output">
+      <!--Generated in JavaScript-->
+    </button></li><br>
   </ul>
-</div>
+  
     </div>
   </section>
 
   <section id="results">
-    <div id="current-day">
+    <div class="current-day">
       <!--Today's Forecast-->
       <h1 class="city-name"></h1><h1 class="date-today"></h1><img src="" alt="" class="icon-today"/>
       <p class="temp-today">..</p>
@@ -52,7 +52,7 @@
       <card id="card-1">
         <div class="day-1">
         <h3 id="day-1"></h3>
-        <img src="" alt="" class="icon1"/>
+        <img src="" alt="" class="icon-1"/>
         <p class="temp1"></p>
         <p class="wind1"></p>
         <p class="humidity1"></p>
