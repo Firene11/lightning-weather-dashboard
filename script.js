@@ -152,16 +152,12 @@ fetch(fiveDayForecastURL)
 })
 
     
-
-
-
-///////////////////////////////////////////////////////////////////////////////
 //add event listener on click of search button
 searchButton.addEventListener("click", search);
 
 //Function for text input if it's a city or not
 function search() {
-    var cities = input.Value;
+    var city = input.Value;
     if (cities === "") {
         console.log("error");
         return;
