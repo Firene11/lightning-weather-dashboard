@@ -1,7 +1,4 @@
 var APIKey = "6509d1e4a713732bea01a624be400633";
-var city = "Miami"
-var cityInput = document.querySelector("#input-box").value;
-city = cityInput.value;
 
 //Variables connected to DOM
 var searchButton = document.querySelector("#search-button");
@@ -10,15 +7,15 @@ var searchOutput = document.getElementById("#search-history");
 //Stored cities array
 var searchedCities = [];
 
-function getWeather(city) {
 
+function getWeather() {
+
+var cityInput = document.querySelector("#input-box").value;
 //https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
-var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=6509d1e4a713732bea01a624be400633";
+var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityInput + '&appid=' + APIKey + '&units=metric';
 
 // five day forecast -- api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-//var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=6509d1e4a713732bea01a624be400633";
-
-
+var fiveDayForecastURL = "api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=6509d1e4a713732bea01a624be400633";
 
 //Fetch request for data from API
 fetch(weatherURL)
@@ -33,6 +30,7 @@ fetch(weatherURL)
 })
 .then(function(data) {
     console.log(data);
+    $('#input-box').val('');
     //pull data from object array
     var { name } = data;
     var date = dayjs().format ("dddd-MM-DD-YYYY");
@@ -55,11 +53,10 @@ fetch(weatherURL)
 }
 
 //event listener on search button
-searchButton.addEventListener("click", function() {
-    city = cityInput.value;
-    getWeather(city);
-})
+searchButton.addEventListener("click", getWeather);
 
+//Add code to store cities in localStorage
 
+//add code to append search results
 
 
