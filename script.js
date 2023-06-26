@@ -4,16 +4,28 @@ var APIKey = "6509d1e4a713732bea01a624be400633";
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=6509d1e4a713732bea01a624be400633";
 
 // five day forecast -- api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=6509d1e4a713732bea01a624be400633";
+//var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=6509d1e4a713732bea01a624be400633";
 
-var city = "";
-var cities = [];
-var lat = 45.9454;
-var lon = -66.6656;
+//Variables connected to DOM
 var cityInput = document.querySelector("#input-box");
 var searchButton = document.querySelector("#search-button");
 var todaysWeather = document.querySelector(".city-name");
-var searchOutput = document.getElementById("#search-output");
+var searchOutput = document.getElementById("#search-history");
+
+//Stored cities array
+var searchedCities = [];
+//local Storage
+var searchHistory = JSON.parse(localStorage.getItem("history"));
+if (searchHistory !== null) {
+    for (let i = 0; i < searchHistory.length; i++) {
+        if (searchHistory[i] === null) {
+            searchHistory.splice(i, i+1);
+        } else {
+            // Populates localCityArray to publish previous search buttons
+            searchedCities.push(searchHistory[i]);
+        }
+    }
+}
 
 
 searchButton.addEventListener("click", function() {
