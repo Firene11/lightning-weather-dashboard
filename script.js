@@ -1,7 +1,7 @@
 var APIKey = "6509d1e4a713732bea01a624be400633";
 
 //https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=6509d1e4a713732bea01a624be400633";
+var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=6509d1e4a713732bea01a624be400633";
 
 // five day forecast -- api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 //var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=6509d1e4a713732bea01a624be400633";
@@ -14,24 +14,12 @@ var searchOutput = document.getElementById("#search-history");
 
 //Stored cities array
 var searchedCities = [];
-//local Storage
-var searchHistory = JSON.parse(localStorage.getItem("history"));
-if (searchHistory !== null) {
-    for (let i = 0; i < searchHistory.length; i++) {
-        if (searchHistory[i] === null) {
-            searchHistory.splice(i, i+1);
-        } else {
-            // Populates localCityArray to publish previous search buttons
-            searchedCities.push(searchHistory[i]);
-        }
-    }
-}
 
 
-searchButton.addEventListener("click", function() {
+function getWeather(city) {
 
 //Fetch request for data from API
-fetch(queryURL)
+fetch(weatherURL)
 .then(function(response) {
 //Convert to JSON object
     return response.json();
@@ -43,16 +31,20 @@ fetch(queryURL)
 })
 .then(function(data) {
     console.log(data);
-    //pull data from objext array
-    var { name } = data;
+    //pull data from object array
+    var cityName = data.name;
+
+    
+
     //the [0] pulls from the first element of the array
     var date = dayjs().format ("dddd-MM-DD-YYYY");
     var { icon } = data.weather[0];
     var { temp, humidity } = data.main;
     var { speed } = data.wind;
     console.log(name, icon, temp, humidity, speed);
+
     //Display in HTML here//
-    document.querySelector(".city-name").innerText = name;
+    document.querySelector(".city-name").innerText = data.name;
     document.querySelector(".icon-today").src = "https://openweathermap.org/img/wn/" + icon + ".png";
     document.querySelector(".temp-today").innerText = "Temp:" + temp + "°F";
     document.querySelector(".wind-today").innerText = "Wind:" + speed + "MPH";
@@ -62,4 +54,6 @@ fetch(queryURL)
 .catch(function(error) {
     console.log(error);
 })
-})
+}
+
+getWeather(city);
