@@ -21,23 +21,24 @@
   <section class="left-sidebar">
 
     <!--THIS IS THE SEARCH FOR A CITY SECTION-->
-    <div id="side-header">Search for a city:</div>
+    <div class="side-header">
+      <p id ="search-header">Search for a city:</p>
       <input type="text" id="input-box" placeholder="Enter your city..."><br>
       <input type="submit" value="Search" id="search-button">
   <br>
     <hr>
-    <section id="history">
-      <ul class ="search-history"><!--Generated in JavaScript--></ul>
+    <section id="search-history">
+      <ul class ="history"><!--Generated in JavaScript--></ul>
     </section>
     <br>
   
-    </div>
+    </div></div>
   </section>
 
   <section id="results">
     <div class="current-day">
       <!--Today's Forecast-->
-      <h1 class="city-name"></h1><h1 class="date-today"></h1><img src="" alt="" class="icon-today"/>
+      <h1 id="city-name"></h1><h1 class="date-today"></h1><img src="" alt="" class="icon-today"/>
       <p class="temp-today">..</p>
       <p class="wind-today"></p>
       <p class="humidity-today"></p>
