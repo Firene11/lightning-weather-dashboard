@@ -1,40 +1,31 @@
 var APIKey = "6509d1e4a713732bea01a624be400633";
 
+
 //Variables connected to DOM
 var inputBox = document.querySelector("#input-box");
 var searchButton = document.querySelector("#search-button");
-var searchHeader = document.querySelector("#search-header");
+var searchOutput = document.querySelector("#history");
 var cityHeader = document.querySelector(".city-name");
-var searchOutput = document.getElementById("#search-history");
-var history = document.querySelector("city-name");
-
-
-//event listener on search button
-searchButton.addEventListener("click", getWeather);
-searchButton.addEventListener("click", getFiveDays);
-
-//event listener for search history
-//searchOutput.addEventListener("click", getWeather);
+var searchOutput = document.querySelector("#search-output");
+var searchHistory = document.querySelector("#search-history");
+var historyOutput = document.querySelector("#history-output");
+var cityHeader = document.querySelector("city-name");
+var city = "Miami";
+var historyList = "";
 
 // Search Event calls weather of city
-function getCity(event) {
+searchButton.addEventListener("click", function(event) {
     event.preventDefault();
-    var userInput = inputBox.value.trim();
 
-    if (userInput === " ") {
-        alert("Add the name of a city!")
-        return;
-      }
+    var userInput = inputBox.value;
 
-        updateLocalStorage(userInput);
-        //updateSearch();
-        getWeather(cityInput);
-        getFiveDays();
-        inputBox.value = " ";
-
-}
+    localStorage.setItem("userInput", JSON.stringify(userInput));
+    getWeather();
+    getFiveDays();
+    renderCity();
+})
     
-function getWeather (lat, lon) {
+function getWeather () {
 var userInput = inputBox.value.trim();
 //https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
 var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + userInput + '&appid=' + APIKey + '&units=metric';
@@ -115,10 +106,10 @@ fetch(fiveDayForecastURL)
     var icons = document.querySelectorAll(".icons");
     console.log(data);
 
-//loop through data
-for (let i = 0; i < 6; i++) {
+    //loop through data
+    for (let i = 0; i < 6; i++) {
 
-    //Display in HTML DAY ONE
+    //Display weather data on forecast cards
     icons[i].src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png";
     temps[i].innerText = "Temp:" + data.list[i].main.temp + "°C";
     winds[i].innerText = "Wind:" + data.list[i].wind.speed + "MPH";
@@ -130,10 +121,10 @@ for (let i = 0; i < 6; i++) {
 })
 }
 
-window.addEventListener("load", function () {
-    window.localStorage.getItem("history")
-})
+function renderCity() {
+    var lastCity = JSON.parse(localStorage.getItem("userInput"));
 
-//Add code to store cities in localStorage
-
-//add code to append search results
+    if (lastCity !== null) {
+        console.log(lastCity);
+    }
+}
