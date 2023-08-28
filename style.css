@@ -97,6 +97,10 @@ ul {
     padding-left: 0px;
 }
 
+li {
+    color: white;
+}
+
 #results {
     font-display: flex;
     flex-direction: column;

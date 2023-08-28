@@ -4,10 +4,9 @@ var APIKey = "6509d1e4a713732bea01a624be400633";
 //Variables connected to DOM
 var inputBox = document.querySelector("#input-box");
 var searchButton = document.querySelector("#search-button");
-var searchOutput = document.querySelector("#history");
 var cityHeader = document.querySelector(".city-name");
 var searchOutput = document.querySelector("#search-output");
-var searchHistory = document.querySelector("#search-history");
+var searchHistory = document.querySelector("#search-history"); //////
 var historyOutput = document.querySelector("#history-output");
 var cityHeader = document.querySelector("city-name");
 var city = "Miami";
@@ -121,10 +120,20 @@ fetch(fiveDayForecastURL)
 })
 }
 
-function renderCity() {
-    var lastCity = JSON.parse(localStorage.getItem("userInput"));
+//<ul id ="search-history"><!--Generated in JavaScript--></ul>
 
-    if (lastCity !== null) {
-        console.log(lastCity);
+//var searchHistory = document.querySelector("#search-history");
+
+function renderCity() {
+    var savedCity = JSON.parse(localStorage.getItem("userInput"));
+
+    if (savedCity) {
+        var cityArray = savedCity.split(',');
+
+        cityArray.forEach(item => {
+            var listItem = document.createElement('li');
+            listItem.textContent = item;
+            searchHistory.appendChild(listItem);
+        });
     }
 }
