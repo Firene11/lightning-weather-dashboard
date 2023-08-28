@@ -72,6 +72,9 @@ hr {
     margin-bottom: 20px;
 }
 
+p {
+    padding-left: 10px;
+}
 
 .searched-city {
     background-color: rgb(192, 191, 191);
@@ -79,6 +82,14 @@ hr {
     border: none;
     padding: 8px;
     border-radius: 4px;
+}
+
+h3 {
+    padding-left: 8px;
+}
+
+h4 {
+    color: white;
 }
 
 ul {
