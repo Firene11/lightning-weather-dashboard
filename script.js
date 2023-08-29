@@ -6,11 +6,12 @@ var inputBox = document.querySelector("#input-box");
 var searchButton = document.querySelector("#search-button");
 var cityHeader = document.querySelector(".city-name");
 var searchOutput = document.querySelector("#search-output");
-var searchHistory = document.querySelector("#search-history"); //////
+var searchHistory = document.querySelector("#search-history"); 
 var historyOutput = document.querySelector("#history-output");
 var cityHeader = document.querySelector("city-name");
-var city = "Miami";
+var city = "";
 var historyList = "";
+var clearHistory = document.querySelector("#delete");
 
 // Search Event calls weather of city
 searchButton.addEventListener("click", function(event) {
@@ -24,7 +25,7 @@ searchButton.addEventListener("click", function(event) {
     renderCity();
 })
     
-function getWeather () {
+function getWeather (city) {
 var userInput = inputBox.value.trim();
 //https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
 var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + userInput + '&appid=' + APIKey + '&units=metric';
@@ -68,7 +69,7 @@ fetch(weatherURL)
 })
 }
 
-function getFiveDays () {
+function getFiveDays (city) {
 var userInput = inputBox.value.trim();
 var fiveDayForecastURL = 'http://api.openweathermap.org/data/2.5/forecast?q=' + userInput + '&appid=' + APIKey + '&units=metric';
 
@@ -120,9 +121,7 @@ fetch(fiveDayForecastURL)
 })
 }
 
-//<ul id ="search-history"><!--Generated in JavaScript--></ul>
-
-//var searchHistory = document.querySelector("#search-history");
+// Save to local Storage
 
 function renderCity() {
     var savedCity = JSON.parse(localStorage.getItem("userInput"));
@@ -134,6 +133,20 @@ function renderCity() {
             var listItem = document.createElement('li');
             listItem.textContent = item;
             searchHistory.appendChild(listItem);
+
+            listItem.addEventListener("click", function() {
+                getHistory();
+            })
         });
     }
+
+    function getHistory(city) {
+        var weatherData = getWeather(city);
+
+        if (weatherData) {
+            searchHistory.push(city);
+            localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+        }
+    }
 }
+
