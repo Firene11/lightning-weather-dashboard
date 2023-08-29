@@ -23,7 +23,7 @@ N/A
 When you search for a city by name, you are presented with the city's name, date, icon, temperature, humidity and wind speed for that city's current weather, along with a 5 day forecast. Then your searched city is saved to local storage.
 
 This app is deployed to Github:
-(https://github.com/)
+(https://firene11.github.io/lightning-weather-dashboard/)
 
 ## Screenshots
 
