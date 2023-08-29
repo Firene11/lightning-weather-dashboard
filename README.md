@@ -1,5 +1,3 @@
-# weather-dashboard
-
 # Lightning Weather Dashboard
 
 ## Description
@@ -14,6 +12,7 @@ This weather dashboard application allows you to search for current and future w
 - [Credits](#credits)
 - [Tests](#tests)
 - [License](#license)
+- [Future-Development](#Future-Development)
 
 ## Installation
 
@@ -24,13 +23,11 @@ N/A
 When you search for a city by name, you are presented with the city's name, date, icon, temperature, humidity and wind speed for that city's current weather, along with a 5 day forecast. Then your searched city is saved to local storage.
 
 This app is deployed to Github:
-(https://calm-taiga-62101-01a8971ea8e8.herokuapp.com/notes)
+(https://github.com/)
 
 ## Screenshots
 
-![Application](Assets/s_shot1.jpg)
-![Application](Assets/s_shot2.jpg)
-![Application](Assets/s_shot3.jpg)
+![Application](Screenshots/ss1.jpg)
 
 ## Credits
 
@@ -43,3 +40,7 @@ N/A
 ## License
 
 N/A
+
+## Future-Development
+
+Add functions to display weather for search history. Add a clear search function. This project is part of a coding bootcamp and I am out of time. I need to move on.
