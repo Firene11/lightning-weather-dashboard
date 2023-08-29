@@ -28,7 +28,7 @@ searchButton.addEventListener("click", function(event) {
 function getWeather (city) {
 var userInput = inputBox.value.trim();
 //https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
-var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + userInput + '&appid=' + APIKey + '&units=metric';
+var weatherURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + userInput + '&appid=' + APIKey + '&units=metric';
 
 //Fetch request for data from API
 fetch(weatherURL)
@@ -71,7 +71,7 @@ fetch(weatherURL)
 
 function getFiveDays (city) {
 var userInput = inputBox.value.trim();
-var fiveDayForecastURL = 'http://api.openweathermap.org/data/2.5/forecast?q=' + userInput + '&appid=' + APIKey + '&units=metric';
+var fiveDayForecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + userInput + '&appid=' + APIKey + '&units=metric';
 
 fetch(fiveDayForecastURL)
 .then(function(response) {
